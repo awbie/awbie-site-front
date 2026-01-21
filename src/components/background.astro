@@ -1,0 +1,14 @@
+---
+const { shape, pixelSize, bg, ink } = Astro.props;
+---
+
+<div
+	class="cover"
+	data-shape={shape}
+	data-pixel-size={pixelSize}
+	data-ink={ink}
+	style={`background-color: ${bg};`}
+>
+</div>
+
+<script src="../assets/scripts/main.ts"></script>

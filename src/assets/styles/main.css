@@ -1,0 +1,46 @@
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 14px;
+	--color-text: #fff;
+	--color-bg: #000;
+	--color-link: #c9c9c9f0;
+	--color-link-hover: #fff;
+	--page-padding: 1.5rem;
+}
+
+body {
+	margin: 0;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: 'Geist Mono Variable', monospace;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	user-select: none;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.cover,
+canvas {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.title {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: clamp(3rem, 5vw, 5rem);
+	letter-spacing: -.055em;
+	mix-blend-mode: difference;
+	pointer-events: none;
+}

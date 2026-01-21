@@ -10,9 +10,12 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"astro": "^5.16.11"
+		"@fontsource-variable/geist-mono": "^5.2.7",
+		"astro": "^5.16.11",
+		"three": "^0.182.0"
 	},
 	"devDependencies": {
+		"@types/three": "^0.182.0",
 		"wrangler": "^4.59.3"
 	}
 }

@@ -1,16 +1,24 @@
 ---
-
+import "../assets/styles/main.css";
+import "@fontsource-variable/geist-mono";
+import Background from "../components/background.astro";
 ---
 
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<title>awbie</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1 class="title">awbie</h1>
+		<Background
+			shape={"squares"}
+			ink={"#ffffff"}
+			bg={"oklch(14.1% 0.005 285.823)"}
+			pixelSize={4}
+		/>
 	</body>
 </html>
