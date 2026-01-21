@@ -6,7 +6,7 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"deploy": "wrangler deploy",
+		"deploy": "astro build && wrangler deploy",
 		"astro": "astro"
 	},
 	"dependencies": {
