@@ -1,4 +1,15 @@
-import * as THREE from 'three';
+import {
+	WebGLRenderer,
+	Vector2,
+	Color,
+	Scene,
+	OrthographicCamera,
+	ShaderMaterial,
+	GLSL3,
+	Mesh,
+	PlaneGeometry,
+	Clock,
+} from 'three';
 import vertexSrc from '../shaders/vertex.glsl?raw';
 import fragmentSrc from '../shaders/fragment.glsl?raw';
 
@@ -16,30 +27,30 @@ const SHAPE_MAP: Record<string, number> = {
 
 const canvas = document.createElement('canvas');
 const gl = canvas.getContext('webgl2')!;
-const renderer = new THREE.WebGLRenderer({ canvas, context: gl, antialias: true });
+const renderer = new WebGLRenderer({ canvas, context: gl, antialias: true });
 bg?.appendChild(canvas);
 
 const MAX_CLICKS = 10;
 const uniforms = {
-	uResolution: { value: new THREE.Vector2() },
+	uResolution: { value: new Vector2() },
 	uTime: { value: 0 },
-	uColor: { value: new THREE.Color(inkAttr) },
-	uClickPos: { value: Array.from({ length: MAX_CLICKS }, () => new THREE.Vector2(-1, -1)) },
+	uColor: { value: new Color(inkAttr) },
+	uClickPos: { value: Array.from({ length: MAX_CLICKS }, () => new Vector2(-1, -1)) },
 	uClickTimes: { value: new Float32Array(MAX_CLICKS) },
 	uShapeType: { value: SHAPE_MAP[shapeAttr] ?? 0 },
 	uPixelSize: { value: parseFloat(pixelSizeAttr) || 4 },
 };
 
-const scene = new THREE.Scene();
-const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-const material = new THREE.ShaderMaterial({
+const scene = new Scene();
+const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
+const material = new ShaderMaterial({
 	vertexShader: vertexSrc,
 	fragmentShader: fragmentSrc,
 	uniforms,
-	glslVersion: THREE.GLSL3,
+	glslVersion: GLSL3,
 	transparent: true,
 });
-scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material));
+scene.add(new Mesh(new PlaneGeometry(2, 2), material));
 
 const resize = () => {
 	const w = canvas.clientWidth || window.innerWidth;
@@ -61,7 +72,7 @@ canvas.addEventListener('pointerdown', e => {
 	clickIx = (clickIx + 1) % MAX_CLICKS;
 });
 
-const clock = new THREE.Clock();
+const clock = new Clock();
 (function animate() {
 	uniforms.uTime.value = clock.getElapsedTime();
 	renderer.render(scene, camera);
