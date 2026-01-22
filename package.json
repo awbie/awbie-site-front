@@ -12,9 +12,11 @@
 		"astro": "astro"
 	},
 	"dependencies": {
+		"@astrojs/check": "^0.9.6",
 		"@fontsource-variable/geist-mono": "^5.2.7",
 		"astro": "^5.16.11",
-		"three": "^0.182.0"
+		"three": "^0.182.0",
+		"typescript": "^5.9.3"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.11",
