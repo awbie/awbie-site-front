@@ -10,8 +10,8 @@ import {
 	Vector2,
 	WebGLRenderer,
 } from "three";
-import fragmentSrc from "../shaders/fragment.glsl?raw";
-import vertexSrc from "../shaders/vertex.glsl?raw";
+import fragmentSrc from "@/assets/shaders/fragment.glsl?raw";
+import vertexSrc from "@/assets/shaders/vertex.glsl?raw";
 
 const bg = document.querySelector(".cover");
 const shapeAttr = bg?.getAttribute("data-shape") ?? "square";
