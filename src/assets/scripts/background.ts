@@ -1,22 +1,22 @@
 import {
-	WebGLRenderer,
-	Vector2,
+	Clock,
 	Color,
-	Scene,
-	OrthographicCamera,
-	ShaderMaterial,
 	GLSL3,
 	Mesh,
+	OrthographicCamera,
 	PlaneGeometry,
-	Clock,
-} from 'three';
-import vertexSrc from '../shaders/vertex.glsl?raw';
-import fragmentSrc from '../shaders/fragment.glsl?raw';
+	Scene,
+	ShaderMaterial,
+	Vector2,
+	WebGLRenderer,
+} from "three";
+import fragmentSrc from "../shaders/fragment.glsl?raw";
+import vertexSrc from "../shaders/vertex.glsl?raw";
 
-const bg = document.querySelector('.cover');
-const shapeAttr = bg?.getAttribute('data-shape') ?? 'square';
-const pixelSizeAttr = bg?.getAttribute('data-pixel-size') ?? '4';
-const inkAttr = bg?.getAttribute('data-ink') ?? '#FFFFFF';
+const bg = document.querySelector(".cover");
+const shapeAttr = bg?.getAttribute("data-shape") ?? "square";
+const pixelSizeAttr = bg?.getAttribute("data-pixel-size") ?? "4";
+const inkAttr = bg?.getAttribute("data-ink") ?? "#FFFFFF";
 
 const SHAPE_MAP: Record<string, number> = {
 	square: 0,
@@ -25,8 +25,8 @@ const SHAPE_MAP: Record<string, number> = {
 	diamond: 3,
 };
 
-const canvas = document.createElement('canvas');
-const gl = canvas.getContext('webgl2')!;
+const canvas = document.createElement("canvas");
+const gl = canvas.getContext("webgl2")!;
 const renderer = new WebGLRenderer({ canvas, context: gl, antialias: true });
 bg?.appendChild(canvas);
 
@@ -35,7 +35,9 @@ const uniforms = {
 	uResolution: { value: new Vector2() },
 	uTime: { value: 0 },
 	uColor: { value: new Color(inkAttr) },
-	uClickPos: { value: Array.from({ length: MAX_CLICKS }, () => new Vector2(-1, -1)) },
+	uClickPos: {
+		value: Array.from({ length: MAX_CLICKS }, () => new Vector2(-1, -1)),
+	},
 	uClickTimes: { value: new Float32Array(MAX_CLICKS) },
 	uShapeType: { value: SHAPE_MAP[shapeAttr] ?? 0 },
 	uPixelSize: { value: parseFloat(pixelSizeAttr) || 4 },
@@ -58,14 +60,15 @@ const resize = () => {
 	renderer.setSize(w, h, false);
 	uniforms.uResolution.value.set(w, h);
 };
-window.addEventListener('resize', resize);
+window.addEventListener("resize", resize);
 resize();
 
 let clickIx = 0;
-canvas.addEventListener('pointerdown', e => {
+canvas.addEventListener("pointerdown", (e) => {
 	const rect = canvas.getBoundingClientRect();
 	const fx = (e.clientX - rect.left) * (canvas.width / rect.width);
-	const fy = (rect.height - (e.clientY - rect.top)) * (canvas.height / rect.height);
+	const fy =
+		(rect.height - (e.clientY - rect.top)) * (canvas.height / rect.height);
 
 	uniforms.uClickPos.value[clickIx].set(fx, fy);
 	uniforms.uClickTimes.value[clickIx] = uniforms.uTime.value;

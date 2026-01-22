@@ -17,7 +17,7 @@ body {
 	margin: 0;
 	color: var(--color-text);
 	background-color: var(--color-bg);
-	font-family: 'Geist Mono Variable', monospace;
+	font-family: "Geist Mono Variable", monospace;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	user-select: none;
@@ -40,7 +40,7 @@ canvas {
 	justify-content: center;
 	align-items: center;
 	font-size: clamp(3rem, 5vw, 5rem);
-	letter-spacing: -.055em;
+	letter-spacing: -0.055em;
 	mix-blend-mode: difference;
 	pointer-events: none;
 }
