@@ -2,7 +2,6 @@ precision highp float;
 
 uniform vec3  uColor; // Viewport resolution (pixels)
 uniform vec2  uResolution;
-uniform vec4  uMouse;
 uniform float uTime;
 uniform float uPixelSize;
 
