@@ -7,6 +7,8 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"deploy": "astro build && wrangler deploy",
+		"lint": "biome lint --write .",
+		"lint:fix": "biome check --write .",
 		"astro": "astro"
 	},
 	"dependencies": {
