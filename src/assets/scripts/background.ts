@@ -26,7 +26,10 @@ const SHAPE_MAP: Record<string, number> = {
 };
 
 const canvas = document.createElement("canvas");
-const gl = canvas.getContext("webgl2")!;
+const gl = canvas.getContext("webgl2");
+if (!gl) {
+	throw new Error("WebGL2 not supported");
+}
 const renderer = new WebGLRenderer({ canvas, context: gl, antialias: true });
 bg?.appendChild(canvas);
 
